@@ -94,10 +94,10 @@ int morse_encode(char * input, char * output)
                 case 'Z':
                         curr_code = CODE_Z;
                         break;
-                case 'À':
+/*                 case 'À':
                         curr_code = CODE_À;
-                        break;
-                case 'Å':
+                        break; */
+/*                 case 'Å':
                         curr_code = CODE_Å;
                         break;
                 case 'Ä':
@@ -120,7 +120,7 @@ int morse_encode(char * input, char * output)
                         break;
                 case 'Ñ':
                         curr_code = CODE_Ñ;
-                        break;
+                        break;*/
                 case '1':
                         curr_code = CODE_1;
                         break;
@@ -324,7 +324,7 @@ int morse_decode(char * input, char * output)
                         else if(strcmp(curr_code, CODE_H) == 0){
                                 curr_char = "H";
                         }
-                        else if(strcmp(curr_code, CODE_CH) == 0){
+/*                      else if(strcmp(curr_code, CODE_CH) == 0){
                                 curr_char = "CH";
                         }
                         else if(strcmp(curr_code, CODE_Ö) == 0){
@@ -334,8 +334,9 @@ int morse_decode(char * input, char * output)
                                 curr_char = "Ä";
                         }
                         else if(strcmp(curr_code, CODE_Ü) == 0){
-                                curr_char = "Ü";
+                                curr_char = "Ü"; 
                         }
+*/
                         break;
                 case 5:
                         if(strcmp(curr_code, CODE_0) == 0){
@@ -347,9 +348,9 @@ int morse_decode(char * input, char * output)
                         else if(strcmp(curr_code, CODE_8) == 0){
                                 curr_char = "8";
                         }
-                        else if(strcmp(curr_code, CODE_Ñ) == 0){
+/*                         else if(strcmp(curr_code, CODE_Ñ) == 0){
                                 curr_char = "Ñ";
-                        }
+                        } */
                         else if(strcmp(curr_code, CODE_7) == 0){
                                 curr_char = "7";
                         }
@@ -368,21 +369,21 @@ int morse_decode(char * input, char * output)
                         else if(strcmp(curr_code, CODE_1) == 0){
                                 curr_char = "1";
                         }
-                        else if(strcmp(curr_code, CODE_À) == 0){
+/*                         else if(strcmp(curr_code, CODE_À) == 0){
                                 curr_char = "À";
-                        }
+                        } */
                         else if(strcmp(curr_code, CODE_PLUSZ) == 0){
                                 curr_char = "+";
                         }
-                        else if(strcmp(curr_code, CODE_È) == 0){
+/*                         else if(strcmp(curr_code, CODE_È) == 0){
                                 curr_char = "È";
-                        }
+                        } */
                         else if(strcmp(curr_code, CODE_2) == 0){
                                 curr_char = "2";
                         }
-                        else if(strcmp(curr_code, CODE_É) == 0){
+/*                         else if(strcmp(curr_code, CODE_É) == 0){
                                 curr_char = "É";
-                        }
+                        } */
                         else if(strcmp(curr_code, CODE_3) == 0){
                                 curr_char = "3";
                         }
@@ -430,9 +431,9 @@ int morse_decode(char * input, char * output)
                         else if(strcmp(curr_code, CODE_QMARK) == 0){
                                 curr_char = "?";
                         }
-                        else if(strcmp(curr_code, CODE_ß) == 0){
+/*                         else if(strcmp(curr_code, CODE_ß) == 0){
                                 curr_char = "ß";
-                        }
+                        } */
                         break;
                 default:
                         /*What to do in this situation?*/

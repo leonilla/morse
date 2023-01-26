@@ -26,8 +26,9 @@
 #define CODE_X "-..-"
 #define CODE_Y "-.--"
 #define CODE_Z "--.."
+
 /*Sonderbuchstaben*/
-#define CODE_À ".--.-"
+/* #define CODE_À ".--.-"
 #define CODE_Å ".--.-"
 #define CODE_Ä ".-.-"
 #define CODE_È ".-..-"
@@ -37,6 +38,7 @@
 #define CODE_ß "...--.."
 #define CODE_CH "----"
 #define CODE_Ñ "--.-"
+*/
 /*Zahlen*/
 #define CODE_1 ".----"
 #define CODE_2 "..---"
