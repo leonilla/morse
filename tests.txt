@@ -1,0 +1,18 @@
+Compiling:
+        gcc -c files.c -ansi -pedantic -Wall -Wextra
+        gcc -c morse.c -ansi -pedantic -Wall -Wextra
+        gcc main.c files.o morse.o -ansi -pedantic -Wall -Wextra -o morse
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+        ./morse -E "Hello World"
+        -- EXPECTED: .... . .-.. .-.. --- / .-- --- .-. .-.. -..
+
+        ./morse -D ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
+        -- EXPECTED: HELLO WORLD
+
+        ./morse -E -I file-in -O file-out
+        -- EXPECTED: verifiable output in file-out
+
+        ./morse -D -I file-out -O file-out-dec
+        -- EXPECTED: output should be identical to file-in
