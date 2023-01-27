@@ -1,5 +1,5 @@
-#include "files.h"
-#include "morse.h"
+#include "../include/files.h"
+#include "../include/morse.h"
 
 #define INVALID_FILE -4
 #define INVALID_DEC_INPUT -3

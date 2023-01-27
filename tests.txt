@@ -1,7 +1,7 @@
 Compiling:
-        gcc -c files.c -ansi -pedantic -Wall -Wextra
-        gcc -c morse.c -ansi -pedantic -Wall -Wextra
-        gcc main.c files.o morse.o -ansi -pedantic -Wall -Wextra -o morse
+        gcc -c src/files.c -ansi -pedantic -Wall -Wextra
+        gcc -c src/morse.c -ansi -pedantic -Wall -Wextra
+        gcc src/main.c files.o morse.o -ansi -pedantic -Wall -Wextra -o morse
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 

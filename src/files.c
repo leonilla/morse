@@ -1,4 +1,4 @@
-#include "files.h"
+#include "../include/files.h"
 
 #define FILE_ERROR -1
 #define NL_PRESENT 1

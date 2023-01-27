@@ -1,4 +1,4 @@
-#include "morse.h"
+#include "../include/morse.h"
 
 /* Zeichen bestehen aus '.' und '-'*/
 /* Zeichen eines Wortes werden durch ' ' getrennt*/
