@@ -13,12 +13,14 @@
 #define DECODE_FILE 3
 #define ENCODE_FILE 4
 
+#define EXIT_COMMND "exit()"
 #define EXIT -1
 
 void flush(void);
 char *read_input(char *input);
 int input_filenames(char **filename_in, char **filename_out);
 int main_menu();
+int launch_interactive();
 void show_help();
 void show_hint();
 int validate_syntax(int argc, char *argv[]);
@@ -175,6 +177,7 @@ int main_menu()
                 case 'I':
                         printf("Launching interactive mode...\n\n");
                         printf("Type 'exit()' in order to leave interactive mode.\n");
+                        launch_interactive();
                         break;
                 case 'x':
                 case 'X':
@@ -185,6 +188,43 @@ int main_menu()
                         return 0;
         }
         return opt;
+}
+
+int launch_interactive()
+{
+        char *input = NULL, *aus = NULL;
+        printf("Enter a string to encode or decode and press the 'enter' key:\n");
+        printf("-Strings containing ONLY '.', '-', '/' or ' ' are assumed to be morse encoded and will be decoded.\n");
+        printf("-Strings containing characters A-Z and/or numbers 0-9 will be encoded.\n");
+        printf("-Type 'exit()' in order to leave interactive mode.\n\n");
+        printf("Message: ");
+        input = read_input(input);
+        while(strcmp(input, EXIT_COMMND) != 0){
+                if(strspn(input, DECODABLE) == strlen(input)){
+                        printf("Decoding input '%s'...\n", input);
+                        aus = calloc((strlen(input) + 1), sizeof(char));
+                        morse_decode(input, aus); 
+                        printf("%s\n", aus);
+                        free(aus);
+                        aus = NULL;
+                }
+                else if(strspn(input, ENCODABLE) == strlen(input)){
+                        printf("Encoding input '%s'...\n", input);
+                        aus = calloc(((strlen(input)*6) + 1), sizeof(char));
+                        morse_encode(input, aus); 
+                        printf("%s\n", aus);
+                        free(aus);
+                        aus = NULL;
+                }
+                else{
+                        printf("Input '%s' contains unrecognized characters. Please try again.\n", input);
+                }
+                printf("\nMessage: ");
+                free(input);
+                input = NULL; 
+                input = read_input(input);
+        }
+        return 0;
 }
 
 void show_help(){
