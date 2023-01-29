@@ -178,6 +178,7 @@ int main_menu()
                         printf("Launching interactive mode...\n\n");
                         printf("Type 'exit()' in order to leave interactive mode.\n");
                         launch_interactive();
+                        printf("\nHave a great day!\n");
                         return EXIT;
                         break;
                 case 'x':
