@@ -41,6 +41,8 @@ For instance, if you are holding a conversation-like message exchange, you could
 ### UNIX-Style mode (run with command line parameters)
 You can use command line parameters to have the application start, complete a specific task, and close upon completion.
 
+#### Processing strings
+
 The syntax for decoding or encoding a string is
 
    ```morse [MODE] [\"QUOTED STRING\"]```
@@ -60,6 +62,8 @@ To decode the string "... - .-. .. -. --."
 or
 
    ```morse --decode "... - .-. .. -. --."```
+
+#### Processing text files
 
 The syntax for decoding or encoding a file is
 
