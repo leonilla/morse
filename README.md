@@ -23,9 +23,7 @@ The application can be run with or without command line parameters.
 ### Interactive mode (no command line parameters)
 Start the application by simply running **./morse**.
 
-A menu containing the available options will be displayed.
-
-Simply tip in the desired option and press the "Enter" key.
+A menu containing the available options will be displayed. Simply tip in the desired option and press the "Enter" key.
 
 Respond to the on-screen prompts by tipping in the requested information and pressing "Enter" again.
 
