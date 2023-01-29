@@ -36,7 +36,7 @@ For instance, if you are holding a conversation-like message exchange, you could
 * If you input a message that contains only a series of spaces, '-', '/' and '.',  it will be assumed to be a morse-encoded message. It will be decoded, and the decoded message will be displayed.
 * If you input a message containing characters A-Z (both upper- and lowercase), numbers 0-9 and/or punctuation symbols, the message will be encoded and the corresponding morse-encoded message will be displayed.
 
-        In this mode, each message you input will be processed and a prompt for a new message will be shown. This way, you can encode the first message of your conversation, decode the message you receive as a reply, encode your reply and so on and so forth.
+   In this mode, each message you input will be processed and a prompt for a new message will be shown. This way, you can encode the first message of your conversation, decode the message you receive as a reply, encode your reply and so on and so forth.
 
 4. Once your message exchange is over, you can exit this mode by typing **exit()** and pressing "Enter".
 
