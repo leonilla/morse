@@ -70,5 +70,5 @@
 
 #define ZEICH_TREN " "
 #define WORT_TREN "/"
-#define ENCODABLE "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;?! "
+#define ENCODABLE "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;?!-_()'\"=+/@ "
 #define DECODABLE ".-/ "

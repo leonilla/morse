@@ -7,6 +7,13 @@ Implemented features include:
 - Prompt-based user friendly menu.
 - Interactive mode that keeps the application open for ongoing encoding and decoding.
 
+## Morse code
+Morse code is a method used in telecommunication to encode text characters as standardized, variable-length sequences of two different signal durations, called *dots* and *dashes*, represented by **.** and **-** respectively.   
+
+Characters within a word are separated by blank spaces, and words are separated by **/**.
+
+International Morse code encodes the **26 basic Latin letters A-Z** (with no distinction between upper and lower case letters), the **Arabic numerals** (0-9), and a **set of punctuation signs**. 
+
 ## Dependencies and Requirements
 Compilation requirements are minimal:
 - A C compiler
