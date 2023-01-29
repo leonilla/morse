@@ -38,6 +38,7 @@ For instance, if you are holding a conversation-like message exchange, you could
 
 4. Once your message exchange is over, you can exit this mode by typing **exit()** and pressing "Enter".
 
+
 ### UNIX-Style mode (run with command line parameters)
 You can use command line parameters to have the application start, complete a specific task, and close upon completion.
 
@@ -49,19 +50,11 @@ The syntax for decoding or encoding a string is
 
 For example, to encode the string "String to encode"
 
-   ```morse -E "String to encode"```
+   ```morse -E "String to encode"``` or ```morse --encode "String to encode"```
 
-or
+To decode the string "... - .-. .. -. --." 
 
-   ```morse --encode "String to encode"```
-
-To decode the string "... - .-. .. -. --."
-
-   ```morse -D "... - .-. .. -. --."```
-
-or
-
-   ```morse --decode "... - .-. .. -. --."```
+   ```morse -D "... - .-. .. -. --."``` or ```morse --decode "... - .-. .. -. --."```
 
 #### Processing text files
 
@@ -71,27 +64,15 @@ The syntax for decoding or encoding a file is
 
 So, to decode the contents of file *input.file* onto *output.file*:
 
-   ```morse -D -I <path/to/input.file> -O <path/to/output.file>```
-
-or
-
-   ```morse --decode -I <path/to/input.file> -O <path/to/output.file>```
+   ```morse -D -I <path/to/input.file> -O <path/to/output.file>``` or ```morse --decode -I <path/to/input.file> -O <path/to/output.file>```
 
 To encode the contents of file *input.file* onto *output.file*:
 
-   ```morse -E -I <path/to/input.file> -O <path/to/output.file>```
-
-or
-
-   ```morse --encode -I <path/to/input.file> -O <path/to/output.file>```
+   ```morse -E -I <path/to/input.file> -O <path/to/output.file>``` or ```morse --encode -I <path/to/input.file> -O <path/to/output.file>```
 
 This help page can be displayed in the command line by running 
 
-   ```"morse -H"```
-
-or 
-
-   ```"morse --help"```
+   ```"morse -H"``` or ```"morse --help"```
 
 
 ## License
