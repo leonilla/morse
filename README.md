@@ -43,46 +43,51 @@ You can use command line parameters to have the application start, complete a sp
 
 The syntax for decoding or encoding a string is
 
-   morse [MODE] [\"QUOTED STRING\"]
+   ```morse [MODE] [\"QUOTED STRING\"]```
 
 For example, to encode the string "String to encode"
 
-   morse -E "String to encode"
+   ```morse -E "String to encode"```
+
 or
 
-   morse --encode "String to encode"
+   ```morse --encode "String to encode"```
 
 To decode the string "... - .-. .. -. --."
 
-   morse -D "... - .-. .. -. --."
+   ```morse -D "... - .-. .. -. --."```
+
 or
 
-   morse --decode "... - .-. .. -. --."
+   ```morse --decode "... - .-. .. -. --."```
 
 The syntax for decoding or encoding a file is
 
-   morse [MODE] [INPUTFLAG] [FILENAME] [OUTPUTFLAG] [FILENAME]
+   ```morse [MODE] [INPUTFLAG] [FILENAME] [OUTPUTFLAG] [FILENAME]```
 
 So, to decode the contents of file *input.file* onto *output.file*:
 
-   morse -D -I <path/to/input.file> -O <path/to/output.file>
+   ```morse -D -I <path/to/input.file> -O <path/to/output.file>```
+
 or
 
-   morse --decode -I <path/to/input.file> -O <path/to/output.file>
+   ```morse --decode -I <path/to/input.file> -O <path/to/output.file>```
 
 To encode the contents of file *input.file* onto *output.file*:
 
-   morse -E -I <path/to/input.file> -O <path/to/output.file>
+   ```morse -E -I <path/to/input.file> -O <path/to/output.file>```
+
 or
 
-   morse --encode -I <path/to/input.file> -O <path/to/output.file>
+   ```morse --encode -I <path/to/input.file> -O <path/to/output.file>```
 
 This help page can be displayed in the command line by running 
 
-   "morse -H" 
+   ```"morse -H"```
+
 or 
 
-   "morse --help"
+   ```"morse --help"```
 
 
 ## License
