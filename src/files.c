@@ -1,9 +1,21 @@
 #include "../include/files.h"
 
 #define FILE_ERROR -1
+#define FILE_VALID 0
 #define NL_PRESENT 1
 #define NL_ABSENT 0
 #define BUFF_SIZE 100
+
+int val_file(char * filename, char const *mode)
+{
+        FILE * file = fopen(filename, mode);
+        if(file == NULL){
+                return FILE_ERROR;
+        }
+        fclose(file);
+        return FILE_VALID;
+}
+
 
 int check_newline(char * filename)
 {
@@ -76,3 +88,4 @@ void write_line(FILE * file, char * line){
         }
         return;
 }
+

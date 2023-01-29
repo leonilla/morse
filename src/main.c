@@ -1,6 +1,8 @@
 #include "../include/files.h"
 #include "../include/morse.h"
 
+#define STR_BUFF_SIZE 10
+
 #define INVALID_FILE -4
 #define INVALID_DEC_INPUT -3
 #define INVALID_ENC_INPUT -2
@@ -11,18 +13,29 @@
 #define DECODE_FILE 3
 #define ENCODE_FILE 4
 
+#define EXIT -1
+
+void flush(void);
+char *read_input(char *input);
+int input_filenames(char **filename_in, char **filename_out);
+int main_menu();
 void show_help();
 void show_hint();
 int validate_syntax(int argc, char *argv[]);
 
-int main(int argc, char *argv[]){
-        FILE * fptr_ein;
-        FILE * fptr_aus;
-        char * ein;
-        char * aus;
-        char * line = NULL;
-        int mode = validate_syntax(argc, argv);
-        switch(mode)
+int main(int argc, char *argv[])
+{
+        int mode, opt = 0;
+        char *ein, *aus;
+        /* Running without parameters: interactive mode.*/
+        if(argc == 1){
+                while(opt > EXIT){
+                        opt = main_menu();
+                }
+                return 0;
+        }
+        mode = validate_syntax(argc, argv);
+                switch(mode)
         {
                 case INVALID_DEC_INPUT:
                         printf("Decodable strings can only contain the characters ' ', '/', '-' and '.'.\n");
@@ -55,57 +68,123 @@ int main(int argc, char *argv[]){
                 case DECODE_FILE:
                         printf("Decoding file '%s'.\n", argv[3]);
                         append_newline(argv[3]);
-                        fptr_ein = fopen(argv[3], "r");
-                        if(fptr_ein == NULL){
-                                printf("Error opening file %s.\n", argv[3]);
-                                return INVALID_FILE;
-                        }
-                        fptr_aus = fopen(argv[5], "a");
-                        if(fptr_aus == NULL){
-                                printf("Error opening file %s.\n", argv[5]);
-                                return INVALID_FILE;
-                        }
-                        line = read_line(fptr_ein);
-                        while(line != NULL){
-                                aus = calloc((strlen(line) + 1) , sizeof(char));
-                                morse_decode(line, aus);
-                                write_line(fptr_aus, aus);
-                                free(aus);
-                                line = read_line(fptr_ein);
-                        }
-                        printf("Decoding done. Output written to %s.\n", argv[5]);
-                        fclose(fptr_ein);
-                        fclose(fptr_aus);                        
+                        file_decode(argv[3], argv[5]);
                         break;
                 case ENCODE_FILE:
                         printf("Encoding file '%s'.\n", argv[3]);
                         append_newline(argv[3]);
-                        fptr_ein = fopen(argv[3], "r");
-                        if(fptr_ein == NULL){
-                                printf("Error opening file %s.\n", argv[3]);
-                                return INVALID_FILE;
-                        }
-                        fptr_aus = fopen(argv[5], "a");
-                        if(fptr_aus == NULL){
-                                printf("Error opening file %s.\n", argv[5]);
-                                return INVALID_FILE;
-                        }
-                        line = read_line(fptr_ein);
-                        while(line != NULL){
-                                aus = calloc((strlen(line) + 1) * 6 , sizeof(char));
-                                morse_encode(line, aus);
-                                write_line(fptr_aus, aus);
-                                free(aus);
-                                line = read_line(fptr_ein);
-                        }
-                        printf("Encoding done. Output written to %s.\n", argv[5]);
-                        fclose(fptr_ein);
-                        fclose(fptr_aus);
+                        file_encode(argv[3], argv[5]);
                         break;
                 default:
                         show_hint();
         }        
         return 0;
+}
+
+void flush(void)
+{
+        while (getchar() != '\n'){ 
+
+        }
+}
+
+char *read_input(char *input)
+{
+        int i = 0;
+        char c = getchar();
+        input = malloc((STR_BUFF_SIZE + 1) * sizeof(char));
+        if(input == NULL){
+                return NULL;
+        }
+        while(c != '\n'){
+                if(i >= STR_BUFF_SIZE){
+                        input = realloc(input, (i + 1 + 1) * sizeof(char));
+                }
+                *(input + i) = c;
+                i++;
+                c= getchar();
+        }
+        *(input + i) = '\0';
+        return input;
+}
+
+int input_filenames(char **filename_in, char **filename_out)
+{
+        int ret = 0;
+        printf("\nInput file: ");
+        *filename_in = read_input(*filename_in);
+        while(strlen(*filename_in) == 0){
+                printf("Please provide a non-empty input filename: ");
+                *filename_in = read_input(*filename_in);
+        }
+        ret = val_file(*filename_in, "r");
+        if(ret != 0){
+                printf("Input file not found. Please double check the file '%s' exists.\n", *filename_in);
+                return -1;
+        }
+        printf("Output file: ");
+        *filename_out = read_input(*filename_out);
+        if(strlen(*filename_out) == 0){
+                printf("Empty output filename provided. Output will be written to default 'file.out'.\n");
+                *filename_out = "file.out";
+        }
+        ret = val_file(*filename_out, "a");
+        if(ret != 0){
+                printf("Error writing to '%s'. Please double check that you have permissions to write to this path.\n", *filename_out);
+                return -1;
+        }
+        return 0;
+}
+
+/* Show main menu, capture single letter option, launch corresponding mode.*/
+/* opt is returned to main for flow control.*/
+int main_menu()
+{
+        char opt;
+        char *filename_in = NULL, *filename_out = NULL;
+        printf("\n******** Morse Code Encoder/Decoder ********\n");
+        printf("***************  Main Menu  ****************\n");
+        printf("\td - Decode a file\n");
+        printf("\te - Encode a file\n");
+        printf("\ti - Interactive Encode/Decode\n\n");       
+        printf("\tx - Terminate application and exit\n");
+        printf("--------------------------------------------\n\n");
+        printf("Please enter the desired option: ");
+        opt = getchar();
+        flush();
+        
+        switch(opt)
+        {
+                case 'd':
+                case 'D':
+                        printf("Launching file decoding mode...\n\n");
+                        input_filenames(&filename_in, &filename_out);
+                        if(filename_in != NULL && filename_out != NULL){
+                                file_decode(filename_in, filename_out);
+                        }
+                        break;
+                case 'e':
+                case 'E':
+                        printf("Launching file encoding mode...\n\n");
+                        input_filenames(&filename_in, &filename_out);
+                        if(filename_in != NULL && filename_out != NULL){
+                                file_encode(filename_in, filename_out);
+                        }
+                        break;
+                case 'i':
+                case 'I':
+                        printf("Launching interactive mode...\n\n");
+                        printf("Type 'exit()' in order to leave interactive mode.\n");
+                        break;
+                case 'x':
+                case 'X':
+                        printf("\nHave a great day!\n");
+                        return EXIT;
+                default:
+                        printf("Please try again using one of the options listed in the menu.\n\n");
+                        return 0;
+        }
+        return opt;
 }
 
 void show_help(){

@@ -1,5 +1,7 @@
 #include "../include/morse.h"
 
+#define INVALID_FILE -4
+
 /* Zeichen bestehen aus '.' und '-'*/
 /* Zeichen eines Wortes werden durch ' ' getrennt*/
 /* Wörter werden durch '/' getrennt*/
@@ -449,5 +451,65 @@ int morse_decode(char * input, char * output)
                         morse_decode((next_char_start + 1), output);
                 }                
         }
+        return 0;
+}
+
+int file_encode(char * file_in, char * file_out)
+{
+        FILE *fptr_ein, *fptr_aus;
+        char *line, *aus;
+        printf("Encoding file '%s'.\n", file_in);
+        append_newline(file_in);
+        fptr_ein = fopen(file_in, "r");
+        if(fptr_ein == NULL){
+                printf("Error opening file %s.\n", file_in);
+                return INVALID_FILE;
+        }
+        fptr_aus = fopen(file_out, "a");
+        if(fptr_aus == NULL){
+                printf("Error opening file %s.\n", file_out);
+                return INVALID_FILE;
+        }
+        line = read_line(fptr_ein);
+        while(line != NULL){
+                aus = calloc((strlen(line) + 1) * 6 , sizeof(char));
+                morse_encode(line, aus);
+                write_line(fptr_aus, aus);
+                free(aus);
+                line = read_line(fptr_ein);
+        }
+        printf("Encoding done. Output written to %s.\n", file_out);
+        fclose(fptr_ein);
+        fclose(fptr_aus);
+        return 0;
+}
+
+int file_decode(char * file_in, char * file_out)
+{
+        FILE *fptr_ein, *fptr_aus;
+        char *line, *aus;
+        printf("Decoding file '%s'.\n", file_in);
+        append_newline(file_in);
+        fptr_ein = fopen(file_in, "r");
+        if(fptr_ein == NULL){
+                printf("Error opening file %s.\n", file_in);
+                return INVALID_FILE;
+        }
+        fptr_aus = fopen(file_out, "a");
+        if(fptr_aus == NULL){
+                printf("Error opening file %s.\n", file_out);
+                return INVALID_FILE;
+        }
+        line = read_line(fptr_ein);
+        while(line != NULL){
+                aus = calloc((strlen(line) + 1) , sizeof(char));
+                morse_decode(line, aus);
+                write_line(fptr_aus, aus);
+                free(aus);
+                line = read_line(fptr_ein);
+        }
+        printf("Decoding done. Output written to %s.\n", file_out);
+        fclose(fptr_ein);
+        fclose(fptr_aus);
         return 0;
 }

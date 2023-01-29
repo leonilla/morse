@@ -7,6 +7,7 @@
 #define NL_ABSENT 0
 #define BUFF_SIZE 100
 
+int val_file(char * filename, char const *mode);
 int check_newline(char * filename);
 int append_newline(char * filename);
 char * read_line(FILE * file);
