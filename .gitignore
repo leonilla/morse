@@ -2,3 +2,5 @@ file-in
 file-out
 file-out-dec
 *.o
+morse
+plan.c
