@@ -1,3 +1,5 @@
+/* Funktionen, die sich mit Codieren bzw. Decodieren von Nachrichten beschäftigen.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>

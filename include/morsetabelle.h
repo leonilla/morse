@@ -1,4 +1,6 @@
-/*TODO: Complete Table with missing characters to ensure full charset support*/
+/* Definition von Codierungen von Zeichen als Konstanten
+und von zu akzeptierenden Mengen von Zeichen.*/
+
 /*Buchstaben*/
 #define CODE_A ".-"
 #define CODE_B "-..."
@@ -39,6 +41,7 @@
 #define CODE_CH "----"
 #define CODE_Ñ "--.-"
 */
+
 /*Zahlen*/
 #define CODE_1 ".----"
 #define CODE_2 "..---"
@@ -50,6 +53,7 @@
 #define CODE_8 "---.."
 #define CODE_9 "----."
 #define CODE_0 "-----"
+
 /*Satzzeichen*/
 #define CODE_PUNKT ".-.-.-"
 #define CODE_KOMMA "--..--"
@@ -70,5 +74,7 @@
 
 #define ZEICH_TREN " "
 #define WORT_TREN "/"
+
+/*Akzeptabelen Zeichen*/
 #define ENCODABLE "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;?!-_()'\"=+/@ "
 #define DECODABLE ".-/ "

@@ -1,14 +1,5 @@
 #include "../include/morse.h"
 
-#define INVALID_FILE -4
-
-/* Zeichen bestehen aus '.' und '-'*/
-/* Zeichen eines Wortes werden durch ' ' getrennt*/
-/* Wörter werden durch '/' getrennt*/
-
-/*TODO: Separate meaningfully into .c/.h files*/
-/*TODO: Error Handling*/
-
 int morse_encode(char * input, char * output)
 {
         char curr_char;
@@ -463,12 +454,12 @@ int file_encode(char * file_in, char * file_out)
         fptr_ein = fopen(file_in, "r");
         if(fptr_ein == NULL){
                 printf("Error opening file %s.\n", file_in);
-                return INVALID_FILE;
+                return FILE_ERROR;
         }
         fptr_aus = fopen(file_out, "a");
         if(fptr_aus == NULL){
                 printf("Error opening file %s.\n", file_out);
-                return INVALID_FILE;
+                return FILE_ERROR;
         }
         line = read_line(fptr_ein);
         while(line != NULL){
@@ -493,14 +484,17 @@ int file_decode(char * file_in, char * file_out)
         fptr_ein = fopen(file_in, "r");
         if(fptr_ein == NULL){
                 printf("Error opening file %s.\n", file_in);
-                return INVALID_FILE;
+                return FILE_ERROR;
         }
+        
         fptr_aus = fopen(file_out, "a");
         if(fptr_aus == NULL){
                 printf("Error opening file %s.\n", file_out);
-                return INVALID_FILE;
+                return FILE_ERROR;
         }
+        printf("Begin reading lines.\n");
         line = read_line(fptr_ein);
+        printf("Line: %s", line);
         while(line != NULL){
                 aus = calloc((strlen(line) + 1) , sizeof(char));
                 morse_decode(line, aus);

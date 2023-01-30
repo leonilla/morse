@@ -1,11 +1,5 @@
 #include "../include/files.h"
 
-#define FILE_ERROR -1
-#define FILE_VALID 0
-#define NL_PRESENT 1
-#define NL_ABSENT 0
-#define BUFF_SIZE 100
-
 int val_file(char * filename, char const *mode)
 {
         FILE * file = fopen(filename, mode);
@@ -38,6 +32,7 @@ int append_newline(char * filename)
         FILE * file = fopen(filename, "a");
         char newline = '\n';
         int nl = check_newline(filename);
+        printf("Checked for newline with result %i\n", nl);
         switch(nl)
         {
                 case FILE_ERROR:
@@ -71,9 +66,9 @@ char * read_line(FILE * file){
                 len = fread(buffer, sizeof(char), BUFF_SIZE, file);
                 span = strcspn(buffer, "\n");
                 if(span != 0){
-                        line = calloc((span +2), sizeof(char));
+                        line = calloc((span + 1), sizeof(char));
                         memcpy(line, buffer, span+1);
-                        fseek(file, (len - span -1)*-1, SEEK_CUR);
+                        fseek(file, (len - span -1) * -1, SEEK_CUR);
                         free(buffer);
                 }
         }
