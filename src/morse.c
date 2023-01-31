@@ -84,33 +84,6 @@ char *char_encode(char input)
                 case 'Z':
                         code = CODE_Z;
                         break;
-/*              case 'À':
-                        code = CODE_À;
-                        break; */
-/*              case 'Å':
-                        code = CODE_Å;
-                        break;
-                case 'Ä':
-                        code = CODE_Ä;
-                        break;
-                case 'È':
-                        code = CODE_È;
-                        break;
-                case 'É':
-                        code = CODE_É;
-                        break;
-                case 'Ö':
-                        code = CODE_Ö;
-                        break;
-                case 'Ü':
-                        code = CODE_Ü;
-                        break;
-                case 'ß':
-                        code = CODE_ß;
-                        break;
-                case 'Ñ':
-                        code = CODE_Ñ;
-                        break;*/
                 case '1':
                         code = CODE_1;
                         break;
@@ -470,7 +443,9 @@ char *decode_char(char *input)
                         else if(strcmp(input, CODE_QMARK) == 0){
                                 c = "?";
                         }
-                        else if(strcmp(input, CODE_S_ZED) == 0){
+                        break;
+                case 7:
+                        if(strcmp(input, CODE_S_ZED) == 0){
                                 c = "ß";
                         }
                         break;
