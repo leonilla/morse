@@ -4,8 +4,6 @@ Ausgabe von Prompten und Einlesen von Benutzereingabe gehören in dieser Datei.*
 #include "files.h"
 #include "morse.h"
 
-#define STR_BUFF_SIZE 10
-
 #define INVALID_FILE -4
 #define INVALID_DEC_INPUT -3
 #define INVALID_ENC_INPUT -2

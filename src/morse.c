@@ -84,10 +84,10 @@ char *char_encode(char input)
                 case 'Z':
                         code = CODE_Z;
                         break;
-/*                 case 'À':
+/*              case 'À':
                         code = CODE_À;
                         break; */
-/*                 case 'Å':
+/*              case 'Å':
                         code = CODE_Å;
                         break;
                 case 'Ä':
