@@ -39,7 +39,7 @@ int input_filenames(char **filename_in, char **filename_out)
         ret = val_file(*filename_in, "r");
         if(ret != 0){
                 printf("Input file not found. Please double check the file '%s' exists.\n", *filename_in);
-                return -1;
+                return FILE_ERROR;
         }
         printf("Output file: ");
         *filename_out = read_input(*filename_out);
@@ -50,9 +50,9 @@ int input_filenames(char **filename_in, char **filename_out)
         ret = val_file(*filename_out, "a");
         if(ret != 0){
                 printf("Error writing to '%s'. Please double check that you have permissions to write to this path.\n", *filename_out);
-                return -1;
+                return FILE_ERROR;
         }
-        return 0;
+        return FILE_VALID;
 }
 
 /* Show main menu, capture single letter option, launch corresponding mode.*/
@@ -61,6 +61,7 @@ int main_menu(void)
 {
         char opt;
         char *filename_in = NULL, *filename_out = NULL;
+        int f;
         printf("\n******** Morse Code Encoder/Decoder ********\n");
         printf("***************  Main Menu  ****************\n");
         printf("\td - Decode a file\n");
@@ -77,17 +78,21 @@ int main_menu(void)
                 case 'd':
                 case 'D':
                         printf("Launching file decoding mode...\n\n");
-                        input_filenames(&filename_in, &filename_out);
-                        if(filename_in != NULL && filename_out != NULL){
-                                decode_file(filename_in, filename_out);
+                        f = input_filenames(&filename_in, &filename_out);
+                        if(f != 0){
+                                if(filename_in != NULL && filename_out != NULL){
+                                        decode_file(filename_in, filename_out);
+                                }
                         }
                         break;
                 case 'e':
                 case 'E':
                         printf("Launching file encoding mode...\n\n");
-                        input_filenames(&filename_in, &filename_out);
-                        if(filename_in != NULL && filename_out != NULL){
-                                encode_file(filename_in, filename_out);
+                        f = input_filenames(&filename_in, &filename_out);
+                        if(f == 0){
+                                if(filename_in != NULL && filename_out != NULL){
+                                        encode_file(filename_in, filename_out);
+                                }
                         }
                         break;
                 case 'i':

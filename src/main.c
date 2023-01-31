@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         /* Running with parameters: command line mode.*/
         /* Command syntax is checked and the corresponding functions are called.*/
         mode = validate_syntax(argc, argv);
-                switch(mode)
+        switch(mode)
         {
                 case INVALID_DEC_INPUT:
                         printf("Decodable strings can only contain the characters ' ', '/', '-' and '.'.\n");
