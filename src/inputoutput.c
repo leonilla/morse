@@ -139,14 +139,18 @@ int launch_interactive(void)
                         printf("Decoding input '%s' ...\n", input);
                         aus = decode_string(input); 
                         printf("%s\n", aus);
-                        free(aus);
+                        if(aus != NULL){
+                                free(aus);
+                        }
                         aus = NULL;
                 }
                 else if(strspn(input, ENCODABLE) == strlen(input)){
                         printf("Encoding input '%s' ...\n", input);
                         aus = encode_string(input); 
                         printf("%s\n", aus);
-                        free(aus);
+                        if(aus != NULL){
+                                free(aus);
+                        }
                         aus = NULL;
                 }
                 else{

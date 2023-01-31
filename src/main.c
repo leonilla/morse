@@ -47,10 +47,26 @@ int main(int argc, char *argv[])
                         free(aus);
                         break;
                 case DECODE_FILE:
+                        if(val_file(argv[3], "r") == -1){
+                                printf("Input file not found. Please double check the file '%s' exists.\n", argv[3]);
+                                return FILE_ERROR;
+                        }
+                        else if(val_file(argv[5], "a") == -1){
+                                printf("Error writing to '%s'. Please double check that you have permissions to write to this path.\n", argv[5]);
+                                return FILE_ERROR;
+                        }
                         append_newline(argv[3]);
                         decode_file(argv[3], argv[5]);
                         break;
                 case ENCODE_FILE:
+                        if(val_file(argv[3], "r") == -1){
+                                printf("Input file not found. Please double check the file '%s' exists.\n", argv[3]);
+                                return FILE_ERROR;
+                        }
+                        else if(val_file(argv[5], "a") == -1){
+                                printf("Error writing to '%s'. Please double check that you have permissions to write to this path.\n", argv[5]);
+                                return FILE_ERROR;
+                        }                
                         append_newline(argv[3]);
                         encode_file(argv[3], argv[5]);
                         break;

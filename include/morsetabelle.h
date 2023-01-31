@@ -30,6 +30,7 @@ und von zu akzeptierenden Mengen von Zeichen.*/
 #define CODE_Z "--.."
 
 /*Sonderbuchstaben*/
+/*Sind NICHT durch char darstellbar*/
 #define CODE_A_GRAV ".--.-"
 #define CODE_A_RING ".--.-"
 #define CODE_A_UMLT ".-.-"
@@ -39,7 +40,7 @@ und von zu akzeptierenden Mengen von Zeichen.*/
 #define CODE_U_UMLT "..--"
 #define CODE_S_ZED "...--.."
 #define CODE_CH "----"
-#define CODE_N_TILD "--.-"
+#define CODE_N_TILD "--.--"
 
 /*Zahlen*/
 #define CODE_1 ".----"
