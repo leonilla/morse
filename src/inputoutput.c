@@ -11,12 +11,14 @@ char *read_input(char *input)
 {
         int i = 0;
         char c = getchar();
-        input = malloc((STR_BUFF_SIZE + 1) * sizeof(char));
+        /*Einige Speicherzelle werden reserviert...*/
+        input = malloc((BUFF_SIZE + 1) * sizeof(char));
         if(input == NULL){
                 return NULL;
         }
         while(c != '\n'){
-                if(i >= STR_BUFF_SIZE){
+                if(i >= BUFF_SIZE){
+                        /*Weitere Speicherzelle werden reserviert falls die Eingabe sie beansprucht*/
                         input = realloc(input, (i + 1 + 1) * sizeof(char));
                 }
                 *(input + i) = c;
@@ -33,9 +35,11 @@ int input_filenames(char **filename_in, char **filename_out)
         printf("\nInput file: ");
         *filename_in = read_input(*filename_in);
         while(strlen(*filename_in) == 0){
+                /*Benutzer wird mehrmals aufgefordert falls Eingabe leer ist.*/
                 printf("Please provide a non-empty input filename: ");
                 *filename_in = read_input(*filename_in);
         }
+        /*Überprüfung der Lesbarkeit der (Ein) Datei*/
         ret = val_file(*filename_in, "r");
         if(ret != 0){
                 printf("Input file not found. Please double check the file '%s' exists.\n", *filename_in);
@@ -44,9 +48,11 @@ int input_filenames(char **filename_in, char **filename_out)
         printf("Output file: ");
         *filename_out = read_input(*filename_out);
         if(strlen(*filename_out) == 0){
+                /*Sollte die Eingabe leer sein, ein Default wird verwendet*/
                 printf("Empty output filename provided. Output will be written to default 'file.out'.\n");
                 *filename_out = "file.out";
         }
+        /*Überprüfung der Zugänglichkeit der (Aus) Datei*/
         ret = val_file(*filename_out, "a");
         if(ret != 0){
                 printf("Error writing to '%s'. Please double check that you have permissions to write to this path.\n", *filename_out);
@@ -55,13 +61,14 @@ int input_filenames(char **filename_in, char **filename_out)
         return FILE_VALID;
 }
 
-/* Show main menu, capture single letter option, launch corresponding mode.*/
-/* opt is returned to main for flow control.*/
+/* Zeige Menü, Erfassen einer Option mit einem Buchstaben, Starten des entsprechenden Modus.*/
+/* opt wird an main zurückgegeben für Flow Control.*/
 int main_menu(void)
 {
         char opt;
         char *filename_in = NULL, *filename_out = NULL;
         int f;
+        /* Zeige Menü */
         printf("\n******** Morse Code Encoder/Decoder ********\n");
         printf("***************  Main Menu  ****************\n");
         printf("\td - Decode a file\n");
@@ -70,9 +77,11 @@ int main_menu(void)
         printf("\tx - Terminate application and exit\n");
         printf("--------------------------------------------\n\n");
         printf("Please enter the desired option: ");
+        /* Erfassen einer Option mit einem einzigen Buchstaben */
         opt = getchar();
+        /*Werden mehrere Zeichen eingegeben, gilt nur das Erste */
         flush();
-        
+        /* Starten des gewünschten Modus.*/
         switch(opt)
         {
                 case 'd':
@@ -114,7 +123,7 @@ int main_menu(void)
         return opt;
 }
 
-/* Looping interactive mode.*/
+/* Looping "interactive" Modus.*/
 int launch_interactive(void)
 {
         char *input = NULL, *aus = NULL;
@@ -124,6 +133,7 @@ int launch_interactive(void)
         printf("-Type 'exit()' in order to leave interactive mode.\n\n");
         printf("Message: ");
         input = read_input(input);
+        /* Wird nur durch die Eingabe eines bestimmten Kommandos beendet*/
         while(strcmp(input, EXIT_COMMND) != 0){
                 if(strspn(input, DECODABLE) == strlen(input)){
                         printf("Decoding input '%s' ...\n", input);
@@ -150,7 +160,9 @@ int launch_interactive(void)
         return 0;
 }
 
-int validate_syntax(int argc, char *argv[]){
+/* Syntax Validierung für Kommando Zeile Modus.*/
+int validate_syntax(int argc, char *argv[])
+{
         if (argc == 2){
                 if((strcmp(argv[1],"-H") == 0) || strcmp(argv[1],"--help") == 0){
                         return HELP;
@@ -190,8 +202,9 @@ int validate_syntax(int argc, char *argv[]){
         return INVALID_OPTION;
 }
 
-
-void show_help(void){
+/* Hilfe Seite zeigen.*/
+void show_help(void)
+{
         printf("USAGE:\n");
         printf("\tmorse [MODE] [\"QUOTED STRING\"]\n");
         printf("\tor\n");
@@ -219,7 +232,9 @@ void show_help(void){
         printf("\t\tmorse --help\n");
 }
 
-void show_hint(void){
+/* Benutzungshinweise zeigen.*/
+void show_hint(void)
+{
         printf("USAGE:\n");
         printf("\tmorse [MODE] [\"QUOTED STRING\"]\n");
         printf("\tor\n");

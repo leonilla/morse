@@ -9,7 +9,7 @@ und Lesen bzw. Schreiben eines Zeichens oder einer Zeile von/zu einer Datei.*/
 #define FILE_VALID 0
 #define NL_PRESENT 1
 #define NL_ABSENT 0
-#define BUFF_SIZE 100
+#define BUFF_SIZE 10
 
 int val_file(char * filename, char const *mode);
 int check_newline(char * filename);

@@ -64,11 +64,11 @@ char read_char(FILE * file)
         }
         read = fread(&c, sizeof(char), 1, file);
         if(read == 1){
-                /*1 char successfully read from file*/
-                /*exit function returning char*/
+                /*1 char erfolgreich von Datei gelesen*/
+                /*Dieses char wird zurückgegeben*/
                 return c;
         }
-        /*Failed to read 1 char from file --> EOF reached*/
+        /*Lesen von 1 char von Datei hat nicht geklappt --> EOF erreicht*/
         return 0;
 }
 
@@ -78,12 +78,16 @@ char *read_line(FILE *file)
         char c;
         int i = 0;
         if(file != NULL){
+                /*Zeilen aus einer Datei werden ein char auf einmal gelesen*/
                 c = read_char(file);
+                /*Überprüfen, ob Zeile leer ist*/
                 if (c == 0){
                         return NULL;
                 }
+                /*Gelesene char werden im String gespeichert*/
                 line = calloc((BUFF_SIZE + 1), sizeof(char));
                 while(c != 0 && c != '\n'){
+                        /*Gibt es kein Platz im String mehr, eine einzige weitere Speicherzelle wird reserviert*/
                         if(i >= BUFF_SIZE){
                                 line = realloc(line, (i + 1 + 1) * sizeof(char));
                         }
@@ -91,6 +95,7 @@ char *read_line(FILE *file)
                         ++i;
                         c = read_char(file);
                 }
+                /*Terminal char wird am ende des Strings angehängt*/
                 *(line + i) = '\0';
                 return line;
         }
@@ -102,6 +107,7 @@ void write_line(FILE * file, char * line)
         char newline = '\n';
         if(file != NULL && line != NULL){
                 fwrite(line, sizeof(char), (strlen(line)), file);
+                /*Ein newline wird am Ende jeder Zeile angehängt*/
                 fwrite(&newline, sizeof(char), 1, file);
         }
         return;

@@ -5,16 +5,18 @@ int main(int argc, char *argv[])
         int mode, opt = 0;
         char *ein, *aus;
 
-        /* Running without parameters: interactive mode.*/
+        /* Keine Kommando Zeile Parameter: Interaktive Modus.*/
         if(argc == 1){
+                /* Menü wird wiederholend gezeigt, bis zur Eingabe des Exits Kommandos.*/
                 while(opt > EXIT){
                         opt = main_menu();
                 }
                 return 0;
         }
         
-        /* Running with parameters: command line mode.*/
-        /* Command syntax is checked and the corresponding functions are called.*/
+        /* Kommando Zeile Parameter: UNIX Utility Modus.*/
+        /* Syntax wird validiert und die entsprechende Funktionen werden aufgerufen.*/
+        /* Anwendung wird automatisch beendet nach der Ausführung der Aufgabe*/
         mode = validate_syntax(argc, argv);
         switch(mode)
         {
