@@ -1,8 +1,8 @@
 #include "../include/files.h"
 
-int val_file(char * filename, char const *mode)
+int val_file(char *filename, char const *mode)
 {
-        FILE * file = fopen(filename, mode);
+        FILE *file = fopen(filename, mode);
         if(file == NULL){
                 return FILE_ERROR;
         }
@@ -11,9 +11,9 @@ int val_file(char * filename, char const *mode)
 }
 
 
-int check_newline(char * filename)
+int check_newline(char *filename)
 {
-        FILE * file = fopen(filename, "r");
+        FILE *file = fopen(filename, "r");
         char last;
         if(file == NULL){
                 return FILE_ERROR;
@@ -27,9 +27,9 @@ int check_newline(char * filename)
                 return NL_ABSENT;
 }
 
-int append_newline(char * filename)
+int append_newline(char *filename)
 {
-        FILE * file = fopen(filename, "a");
+        FILE *file = fopen(filename, "a");
         char newline = '\n';
         int nl = check_newline(filename);
         switch(nl)
@@ -55,7 +55,7 @@ int append_newline(char * filename)
         }
 }
 
-char read_char(FILE * file)
+char read_char(FILE *file)
 {
         char c = 0;
         size_t read = 0;
@@ -102,7 +102,7 @@ char *read_line(FILE *file)
         return NULL;
 }
 
-void write_line(FILE * file, char * line)
+void write_line(FILE *file, char *line)
 {
         char newline = '\n';
         if(file != NULL && line != NULL){

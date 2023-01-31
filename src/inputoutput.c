@@ -123,7 +123,7 @@ int main_menu(void)
         return opt;
 }
 
-/* Looping "interactive" Modus.*/
+/* Looping "interaktive" Modus.*/
 int launch_interactive(void)
 {
         char *input = NULL, *aus = NULL;
