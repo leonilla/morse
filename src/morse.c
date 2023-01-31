@@ -235,6 +235,7 @@ int encode_file(char *file_in, char *file_out)
 {
         FILE *fptr_in, *fptr_out;
         char *line, *aus;
+        int i = 0;
         printf("Encoding file '%s'.\n", file_in);
         append_newline(file_in);
         fptr_in = fopen(file_in, "r");
@@ -249,7 +250,13 @@ int encode_file(char *file_in, char *file_out)
         }
         line = read_line(fptr_in);
         while(line != NULL){
+                ++i;
                 aus = encode_string(line);
+                if(aus == NULL){
+                        printf("Issue on line %i of file %s .\n", i, file_in);
+                        printf("Please verify no unsupported characters are present in file to encode.\n");
+                        return UNSUPPORTED;
+                }
                 write_line(fptr_out, aus);
                 line = read_line(fptr_in);
         }
@@ -495,6 +502,9 @@ char *decode_string(char *input)
                         /*Reallocate code to grow by the size of the char's code, plus space, plus endline*/                        
                 }
                 *(code+i) = '\0';
+                if(decode_char(code) == NULL){
+                        return NULL;
+                }
                 /*Append decoded char to output*/
                 strcat(output, decode_char(code));
                 code = calloc( (1+1), sizeof(char));
@@ -516,6 +526,7 @@ int decode_file(char *file_in, char *file_out)
 {
         FILE *fptr_in, *fptr_out;
         char *line, *aus;
+        int i = 0;
         printf("Decoding file '%s'.\n", file_in);
         append_newline(file_in);
         fptr_in = fopen(file_in, "r");
@@ -530,8 +541,13 @@ int decode_file(char *file_in, char *file_out)
         }
         line = read_line(fptr_in);
         while(line != NULL){
+                ++i;
                 aus = decode_string(line);
-                
+                if(aus == NULL){
+                        printf("Issue on line %i of file %s .\n", i, file_in);
+                        printf("Please verify no unsupported characters are present in the file to decode.\n");
+                        return UNSUPPORTED;
+                }
                 write_line(fptr_out, aus);
                 line = read_line(fptr_in);
         }
