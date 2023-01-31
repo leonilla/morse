@@ -2,7 +2,7 @@
 
 int val_file(char *filename, char const *mode)
 {
-        FILE * file = fopen(filename, mode);
+        FILE *file = fopen(filename, mode);
         if(file == NULL){
                 return FILE_ERROR;
         }
