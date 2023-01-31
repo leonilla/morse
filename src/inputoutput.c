@@ -121,14 +121,14 @@ int launch_interactive(void)
         input = read_input(input);
         while(strcmp(input, EXIT_COMMND) != 0){
                 if(strspn(input, DECODABLE) == strlen(input)){
-                        printf("Decoding input '%s'...\n", input);
+                        printf("Decoding input '%s' ...\n", input);
                         aus = decode_string(input); 
                         printf("%s\n", aus);
                         free(aus);
                         aus = NULL;
                 }
                 else if(strspn(input, ENCODABLE) == strlen(input)){
-                        printf("Encoding input '%s'...\n", input);
+                        printf("Encoding input '%s' ...\n", input);
                         aus = encode_string(input); 
                         printf("%s\n", aus);
                         free(aus);

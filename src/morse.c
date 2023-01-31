@@ -193,7 +193,7 @@ char *char_encode(char input)
                         code = WORT_TREN;
                         break;
                 default:
-                        /*What to do in this situation?*/
+                        code = NULL;
                         printf("Unrecognized char '%c' (%i).", input, input);
                         break;
         }
@@ -205,12 +205,15 @@ char *encode_string(char *input)
         /*Initially allocate size for the biggest single char code*/
         char *output = calloc( (7+1), sizeof(char));
         char *code = NULL;
-        char *endline = "\n";
+        char *endstr = "\0";
         char *blanksp = ZEICH_TREN;
         int i = 0;
         char c = *(input + i);
         while(c != '\0'){
                 code = char_encode(c);
+                if(code == NULL){
+                        return NULL;
+                }
                 /*Reallocate output to grow by the size of the char's code, plus space, plus endline*/
                 output = realloc(output, (strlen(output) + strlen(code) + 2) * sizeof(char));
                 /*Append char's code to output*/
@@ -223,9 +226,8 @@ char *encode_string(char *input)
                 }
                 code = NULL;
         }
-        /*Append endline to output*/
-        strcat(output, endline);
-        printf("Code for string '%s' = %s", input, output);
+        /*Append \0 to output*/
+        strcat(output, endstr);
         return output;
 }
 
@@ -355,19 +357,18 @@ char *decode_char(char *input)
                         else if(strcmp(input, CODE_H) == 0){
                                 c = "H";
                         }
-/*                      else if(strcmp(input, CODE_CH) == 0){
+                        else if(strcmp(input, CODE_CH) == 0){
                                 c = "CH";
                         }
-                        else if(strcmp(input, CODE_Ö) == 0){
+                        else if(strcmp(input, CODE_O_UMLT) == 0){
                                 c = "Ö";
                         }
-                        else if(strcmp(input, CODE_Ä) == 0){
+                        else if(strcmp(input, CODE_A_UMLT) == 0){
                                 c = "Ä";
                         }
-                        else if(strcmp(input, CODE_Ü) == 0){
+                        else if(strcmp(input, CODE_U_UMLT) == 0){
                                 c = "Ü"; 
                         }
-*/
                         break;
                 case 5:
                         if(strcmp(input, CODE_0) == 0){
@@ -379,9 +380,9 @@ char *decode_char(char *input)
                         else if(strcmp(input, CODE_8) == 0){
                                 c = "8";
                         }
-/*                         else if(strcmp(input, CODE_Ñ) == 0){
+                        else if(strcmp(input, CODE_N_TILD) == 0){
                                 c = "Ñ";
-                        } */
+                        }
                         else if(strcmp(input, CODE_7) == 0){
                                 c = "7";
                         }
@@ -400,21 +401,21 @@ char *decode_char(char *input)
                         else if(strcmp(input, CODE_1) == 0){
                                 c = "1";
                         }
-/*                         else if(strcmp(input, CODE_À) == 0){
+                        else if(strcmp(input, CODE_A_GRAV) == 0){
                                 c = "À";
-                        } */
+                        }
                         else if(strcmp(input, CODE_PLUSZ) == 0){
                                 c = "+";
                         }
-/*                         else if(strcmp(input, CODE_È) == 0){
+                        else if(strcmp(input, CODE_E_GRAV) == 0){
                                 c = "È";
-                        } */
+                        }
                         else if(strcmp(input, CODE_2) == 0){
                                 c = "2";
                         }
-/*                         else if(strcmp(input, CODE_É) == 0){
+                        else if(strcmp(input, CODE_E_ACUT) == 0){
                                 c = "É";
-                        } */
+                        }
                         else if(strcmp(input, CODE_3) == 0){
                                 c = "3";
                         }
@@ -462,13 +463,13 @@ char *decode_char(char *input)
                         else if(strcmp(input, CODE_QMARK) == 0){
                                 c = "?";
                         }
-/*                         else if(strcmp(input, CODE_ß) == 0){
+                        else if(strcmp(input, CODE_S_ZED) == 0){
                                 c = "ß";
-                        } */
+                        }
                         break;
                 default:
-                        /*What to do in this situation?*/
-                        printf("Non-supported character.\n");
+                        printf("Code '%s' unknown.\n", input);
+                        c = NULL;
                         break;
         }              
         return c;

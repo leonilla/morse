@@ -32,7 +32,6 @@ int append_newline(char * filename)
         FILE * file = fopen(filename, "a");
         char newline = '\n';
         int nl = check_newline(filename);
-        printf("Checked for newline with result %i\n", nl);
         switch(nl)
         {
                 case FILE_ERROR:
@@ -73,9 +72,9 @@ char read_char(FILE * file)
         return 0;
 }
 
-char * read_line(FILE * file)
+char *read_line(FILE *file)
 {
-        char * line = NULL;
+        char *line = NULL;
         char c;
         int i = 0;
         if(file != NULL){
@@ -93,7 +92,6 @@ char * read_line(FILE * file)
                         c = read_char(file);
                 }
                 *(line + i) = '\0';
-                printf("Line: %s.\n", line);
                 return line;
         }
         return NULL;
