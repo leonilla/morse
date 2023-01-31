@@ -1,4 +1,4 @@
-/* Funktionen, die sich mit Codieren bzw. Decodieren von Nachrichten beschäftigen.*/
+/* Funktionen, die sich mit Codieren bzw. Decodieren von Zeichen, Strings oder Files beschäftigen.*/
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -79,7 +79,7 @@ int main_menu(void)
                 case 'D':
                         printf("Launching file decoding mode...\n\n");
                         f = input_filenames(&filename_in, &filename_out);
-                        if(f != 0){
+                        if(f == 0){
                                 if(filename_in != NULL && filename_out != NULL){
                                         decode_file(filename_in, filename_out);
                                 }
