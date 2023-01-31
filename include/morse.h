@@ -7,6 +7,8 @@
 #include "morsetabelle.h"
 #include "files.h"
 
+#define UNSUPPORTED -1
+
 char *encode_char(char input);
 char *encode_string(char *input);
 int encode_file(char *file_in, char *file_out);

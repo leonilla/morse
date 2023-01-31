@@ -1,6 +1,6 @@
 /*Funktionen, die Dateien behandeln.
 Validierung von Dateien, Überprüfen bzw. Hinzufügen vom \n am Ende einer Datei, 
-und Lesen bzw. Schreiben eines Zeichens von/zu einer Datei.*/
+und Lesen bzw. Schreiben eines Zeichens oder einer Zeile von/zu einer Datei.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

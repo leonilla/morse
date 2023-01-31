@@ -57,7 +57,7 @@ int input_filenames(char **filename_in, char **filename_out)
 
 /* Show main menu, capture single letter option, launch corresponding mode.*/
 /* opt is returned to main for flow control.*/
-int main_menu()
+int main_menu(void)
 {
         char opt;
         char *filename_in = NULL, *filename_out = NULL;
@@ -110,7 +110,7 @@ int main_menu()
 }
 
 /* Looping interactive mode.*/
-int launch_interactive()
+int launch_interactive(void)
 {
         char *input = NULL, *aus = NULL;
         printf("Enter a string to encode or decode and press the 'enter' key:\n");
@@ -186,7 +186,7 @@ int validate_syntax(int argc, char *argv[]){
 }
 
 
-void show_help(){
+void show_help(void){
         printf("USAGE:\n");
         printf("\tmorse [MODE] [\"QUOTED STRING\"]\n");
         printf("\tor\n");
@@ -214,7 +214,7 @@ void show_help(){
         printf("\t\tmorse --help\n");
 }
 
-void show_hint(){
+void show_hint(void){
         printf("USAGE:\n");
         printf("\tmorse [MODE] [\"QUOTED STRING\"]\n");
         printf("\tor\n");

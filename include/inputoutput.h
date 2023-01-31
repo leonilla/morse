@@ -22,8 +22,8 @@ Ausgabe von Prompten und Einlesen von Benutzereingabe gehören in dieser Datei.*
 void flush(void);
 char *read_input(char *input);
 int input_filenames(char **filename_in, char **filename_out);
-int main_menu();
-int launch_interactive();
+int main_menu(void);
+int launch_interactive(void);
 int validate_syntax(int argc, char *argv[]);
-void show_help();
-void show_hint();
+void show_help(void);
+void show_hint(void);

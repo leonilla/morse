@@ -30,17 +30,16 @@ und von zu akzeptierenden Mengen von Zeichen.*/
 #define CODE_Z "--.."
 
 /*Sonderbuchstaben*/
-/* #define CODE_À ".--.-"
-#define CODE_Å ".--.-"
-#define CODE_Ä ".-.-"
-#define CODE_È ".-..-"
-#define CODE_É "..-.."
-#define CODE_Ö "---."
-#define CODE_Ü "..--"
-#define CODE_ß "...--.."
+#define CODE_A_GRAV ".--.-"
+#define CODE_A_RING ".--.-"
+#define CODE_A_UMLT ".-.-"
+#define CODE_E_GRAV ".-..-"
+#define CODE_E_ACUT "..-.."
+#define CODE_O_UMLT "---."
+#define CODE_U_UMLT "..--"
+#define CODE_S_ZED "...--.."
 #define CODE_CH "----"
-#define CODE_Ñ "--.-"
-*/
+#define CODE_N_TILD "--.-"
 
 /*Zahlen*/
 #define CODE_1 ".----"
