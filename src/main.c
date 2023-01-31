@@ -33,26 +33,24 @@ int main(int argc, char *argv[])
                 case DECODE_STRING:
                         printf("Running decoding mode on input '%s':\n", argv[2]);
                         ein = argv[2];
-                        aus = malloc((strlen(ein) + 1) * sizeof(char));
-                        morse_decode(ein, aus); 
+                        aus = decode_string(ein); 
                         printf("%s\n", aus);
                         free(aus);
                         break;
                 case ENCODE_STRING:
                         printf("Running encoding mode on input '%s':\n", argv[2]);
                         ein = argv[2];
-                        aus = malloc((strlen(ein) + 1) * 6 * sizeof(char));
-                        morse_encode(ein, aus);
+                        aus = encode_string(ein);
                         printf("%s\n", aus);
                         free(aus);
                         break;
                 case DECODE_FILE:
                         append_newline(argv[3]);
-                        file_decode(argv[3], argv[5]);
+                        decode_file(argv[3], argv[5]);
                         break;
                 case ENCODE_FILE:
                         append_newline(argv[3]);
-                        file_encode(argv[3], argv[5]);
+                        encode_file(argv[3], argv[5]);
                         break;
                 default:
                         show_hint();

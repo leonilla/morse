@@ -56,26 +56,51 @@ int append_newline(char * filename)
         }
 }
 
-char * read_line(FILE * file){
-        char * buffer = NULL;
-        char * line = NULL;
-        size_t len = 0;
-        size_t span = 0;
-        if(file != NULL){
-                buffer = calloc((BUFF_SIZE + 1), sizeof(char));
-                len = fread(buffer, sizeof(char), BUFF_SIZE, file);
-                span = strcspn(buffer, "\n");
-                if(span != 0){
-                        line = calloc((span + 1), sizeof(char));
-                        memcpy(line, buffer, span+1);
-                        fseek(file, (len - span -1) * -1, SEEK_CUR);
-                        free(buffer);
-                }
+char read_char(FILE * file)
+{
+        char c = 0;
+        size_t read = 0;
+        if(file == NULL){
+                return 0;
         }
-        return line;
+        read = fread(&c, sizeof(char), 1, file);
+        if(read == 1){
+                /*1 char successfully read from file*/
+                /*exit function returning char*/
+                return c;
+        }
+        /*Failed to read 1 char from file --> EOF reached*/
+        return 0;
 }
 
-void write_line(FILE * file, char * line){
+char * read_line(FILE * file)
+{
+        char * line = NULL;
+        char c;
+        int i = 0;
+        if(file != NULL){
+                c = read_char(file);
+                if (c == 0){
+                        return NULL;
+                }
+                line = calloc((BUFF_SIZE + 1), sizeof(char));
+                while(c != 0 && c != '\n'){
+                        if(i >= BUFF_SIZE){
+                                line = realloc(line, (i + 1 + 1) * sizeof(char));
+                        }
+                        *(line + i) = c;
+                        ++i;
+                        c = read_char(file);
+                }
+                *(line + i) = '\0';
+                printf("Line: %s.\n", line);
+                return line;
+        }
+        return NULL;
+}
+
+void write_line(FILE * file, char * line)
+{
         char newline = '\n';
         if(file != NULL && line != NULL){
                 fwrite(line, sizeof(char), (strlen(line)), file);

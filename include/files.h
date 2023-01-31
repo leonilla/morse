@@ -14,5 +14,6 @@ und Lesen bzw. Schreiben eines Zeichens von/zu einer Datei.*/
 int val_file(char * filename, char const *mode);
 int check_newline(char * filename);
 int append_newline(char * filename);
-char * read_line(FILE * file);
+char read_char(FILE * file);
+char *read_line(FILE * file);
 void write_line(FILE * file, char * line);

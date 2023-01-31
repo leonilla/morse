@@ -1,6 +1,9 @@
 file-in
+file_in
 file-out
+file_out
 file-out-dec
+file_out_dec
 *.o
 morse
 plan.c

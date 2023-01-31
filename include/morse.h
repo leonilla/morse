@@ -7,7 +7,10 @@
 #include "morsetabelle.h"
 #include "files.h"
 
-int morse_encode(char * input, char * output);
-int morse_decode(char * input, char * output);
-int file_encode(char * file_in, char * file_out);
-int file_decode(char * file_in, char * file_out);
+char *encode_char(char input);
+char *encode_string(char *input);
+int encode_file(char *file_in, char *file_out);
+
+char *decode_char(char *input);
+char *decode_string(char *input);
+int decode_file(char *file_in, char *file_out);

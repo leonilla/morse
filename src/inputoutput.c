@@ -79,7 +79,7 @@ int main_menu()
                         printf("Launching file decoding mode...\n\n");
                         input_filenames(&filename_in, &filename_out);
                         if(filename_in != NULL && filename_out != NULL){
-                                file_decode(filename_in, filename_out);
+                                decode_file(filename_in, filename_out);
                         }
                         break;
                 case 'e':
@@ -87,7 +87,7 @@ int main_menu()
                         printf("Launching file encoding mode...\n\n");
                         input_filenames(&filename_in, &filename_out);
                         if(filename_in != NULL && filename_out != NULL){
-                                file_encode(filename_in, filename_out);
+                                encode_file(filename_in, filename_out);
                         }
                         break;
                 case 'i':
@@ -122,16 +122,14 @@ int launch_interactive()
         while(strcmp(input, EXIT_COMMND) != 0){
                 if(strspn(input, DECODABLE) == strlen(input)){
                         printf("Decoding input '%s'...\n", input);
-                        aus = calloc((strlen(input) + 1), sizeof(char));
-                        morse_decode(input, aus); 
+                        aus = decode_string(input); 
                         printf("%s\n", aus);
                         free(aus);
                         aus = NULL;
                 }
                 else if(strspn(input, ENCODABLE) == strlen(input)){
                         printf("Encoding input '%s'...\n", input);
-                        aus = calloc(((strlen(input)*6) + 1), sizeof(char));
-                        morse_encode(input, aus); 
+                        aus = encode_string(input); 
                         printf("%s\n", aus);
                         free(aus);
                         aus = NULL;
