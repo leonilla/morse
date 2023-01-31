@@ -1,515 +1,558 @@
 #include "../include/morse.h"
 
-#define INVALID_FILE -4
-
-/* Zeichen bestehen aus '.' und '-'*/
-/* Zeichen eines Wortes werden durch ' ' getrennt*/
-/* Wörter werden durch '/' getrennt*/
-
-/*TODO: Separate meaningfully into .c/.h files*/
-/*TODO: Error Handling*/
-
-int morse_encode(char * input, char * output)
+char *char_encode(char input)
 {
-        char curr_char;
-        char * curr_code;
-        char * next_char;
-        curr_char =  *(input);
-        curr_char = toupper(curr_char);
-        switch(curr_char)
+        char *code;
+        input = toupper(input);
+        switch(input)
         {
                 case 'A':
-                        curr_code = CODE_A;
+                        code = CODE_A;
                         break;
                 case 'B':
-                        curr_code = CODE_B;
+                        code = CODE_B;
                         break;
                 case 'C':
-                        curr_code = CODE_C;
+                        code = CODE_C;
                         break;
                 case 'D':
-                        curr_code = CODE_D;
+                        code = CODE_D;
                         break;
                 case 'E':
-                        curr_code = CODE_E;
+                        code = CODE_E;
                         break;
                 case 'F':
-                        curr_code = CODE_F;
+                        code = CODE_F;
                         break;
                 case 'G':
-                        curr_code = CODE_G;
+                        code = CODE_G;
                         break;
                 case 'H':
-                        curr_code = CODE_H;
+                        code = CODE_H;
                         break;
                 case 'I':
-                        curr_code = CODE_I;
+                        code = CODE_I;
                         break;
                 case 'J':
-                        curr_code = CODE_J;
+                        code = CODE_J;
                         break;
                 case 'K':
-                        curr_code = CODE_K;
+                        code = CODE_K;
                         break;
                 case 'L':
-                        curr_code = CODE_L;
+                        code = CODE_L;
                         break;
                 case 'M':
-                        curr_code = CODE_M;
+                        code = CODE_M;
                         break;
                 case 'N':
-                        curr_code = CODE_N;
+                        code = CODE_N;
                         break;
                 case 'O':
-                        curr_code = CODE_O;
+                        code = CODE_O;
                         break;
                 case 'P':
-                        curr_code = CODE_P;
+                        code = CODE_P;
                         break;
                 case 'Q':
-                        curr_code = CODE_Q;
+                        code = CODE_Q;
                         break;
                 case 'R':
-                        curr_code = CODE_R;
+                        code = CODE_R;
                         break;
                 case 'S':
-                        curr_code = CODE_S;
+                        code = CODE_S;
                         break;
                 case 'T':
-                        curr_code = CODE_T;
+                        code = CODE_T;
                         break;
                 case 'U':
-                        curr_code = CODE_U;
+                        code = CODE_U;
                         break;
                 case 'V':
-                        curr_code = CODE_V;
+                        code = CODE_V;
                         break;
                 case 'W':
-                        curr_code = CODE_W;
+                        code = CODE_W;
                         break;
                 case 'X':
-                        curr_code = CODE_X;
+                        code = CODE_X;
                         break;
                 case 'Y':
-                        curr_code = CODE_Y;
+                        code = CODE_Y;
                         break;
                 case 'Z':
-                        curr_code = CODE_Z;
+                        code = CODE_Z;
                         break;
 /*                 case 'À':
-                        curr_code = CODE_À;
+                        code = CODE_À;
                         break; */
 /*                 case 'Å':
-                        curr_code = CODE_Å;
+                        code = CODE_Å;
                         break;
                 case 'Ä':
-                        curr_code = CODE_Ä;
+                        code = CODE_Ä;
                         break;
                 case 'È':
-                        curr_code = CODE_È;
+                        code = CODE_È;
                         break;
                 case 'É':
-                        curr_code = CODE_É;
+                        code = CODE_É;
                         break;
                 case 'Ö':
-                        curr_code = CODE_Ö;
+                        code = CODE_Ö;
                         break;
                 case 'Ü':
-                        curr_code = CODE_Ü;
+                        code = CODE_Ü;
                         break;
                 case 'ß':
-                        curr_code = CODE_ß;
+                        code = CODE_ß;
                         break;
                 case 'Ñ':
-                        curr_code = CODE_Ñ;
+                        code = CODE_Ñ;
                         break;*/
                 case '1':
-                        curr_code = CODE_1;
+                        code = CODE_1;
                         break;
                 case '2':
-                        curr_code = CODE_2;
+                        code = CODE_2;
                         break;
                 case '3':
-                        curr_code = CODE_3;
+                        code = CODE_3;
                         break;
                 case '4':
-                        curr_code = CODE_4;
+                        code = CODE_4;
                         break;
                 case '5':
-                        curr_code = CODE_5;
+                        code = CODE_5;
                         break;
                 case '6':
-                        curr_code = CODE_6;
+                        code = CODE_6;
                         break;
                 case '7':
-                        curr_code = CODE_7;
+                        code = CODE_7;
                         break;
                 case '8':
-                        curr_code = CODE_8;
+                        code = CODE_8;
                         break;
                 case '9':
-                        curr_code = CODE_9;
+                        code = CODE_9;
                         break;
                 case '0':
-                        curr_code = CODE_0;
+                        code = CODE_0;
                         break;
                 case '.':
-                        curr_code = CODE_PUNKT;
+                        code = CODE_PUNKT;
                         break;
                 case ',':
-                        curr_code = CODE_KOMMA;
+                        code = CODE_KOMMA;
                         break;
                 case ':':
-                        curr_code = CODE_COLON;
+                        code = CODE_COLON;
                         break;
                 case ';':
-                        curr_code = CODE_SEMIC;
+                        code = CODE_SEMIC;
                         break;
                 case '?':
-                        curr_code = CODE_QMARK;
+                        code = CODE_QMARK;
                         break;
                 case '!':
-                        curr_code = CODE_EMARK;
+                        code = CODE_EMARK;
                         break;
                 case '-':
-                        curr_code = CODE_MINUS;
+                        code = CODE_MINUS;
                         break;
                 case '_':
-                        curr_code = CODE_UNDSC;
+                        code = CODE_UNDSC;
                         break;
                 case '(':
-                        curr_code = CODE_PAROP;
+                        code = CODE_PAROP;
                         break;
                 case ')':
-                        curr_code = CODE_PARCL;
+                        code = CODE_PARCL;
                         break;
                 case '\'':
-                        curr_code = CODE_SQUOT;
+                        code = CODE_SQUOT;
                         break;
                 case '"':
-                        curr_code = CODE_DQUOT;
+                        code = CODE_DQUOT;
                         break;
                 case '=':
-                        curr_code = CODE_EQUAL;
+                        code = CODE_EQUAL;
                         break;
                 case '+':
-                        curr_code = CODE_PLUSZ;
+                        code = CODE_PLUSZ;
                         break;
                 case '/':
-                        curr_code = CODE_SLASH;
+                        code = CODE_SLASH;
                         break;
                 case '@':
-                        curr_code = CODE_ATSYM;
+                        code = CODE_ATSYM;
                         break;
                 case ' ':
-                        curr_code = WORT_TREN;
+                        code = WORT_TREN;
                         break;
                 default:
-                        /*What to do in this situation?*/
-                        printf("Unrecognized char '%c' (%i).", curr_char, curr_char);
+                        code = NULL;
+                        printf("Unrecognized char '%c' (%i).", input, input);
                         break;
         }
-        strcat(output, curr_code);
-        next_char = input + 1;
-        if(next_char != NULL && *(next_char) != '\0' && *(next_char) != '\n'){
-                strcat(output, ZEICH_TREN);
-                morse_encode(next_char, output);
+        return code;
+}
+
+char *encode_string(char *input)
+{
+        /*Initially allocate size for the biggest single char code*/
+        char *output = calloc( (7+1), sizeof(char));
+        char *code = NULL;
+        char *endstr = "\0";
+        char *blanksp = ZEICH_TREN;
+        int i = 0;
+        char c = *(input + i);
+        while(c != '\0'){
+                code = char_encode(c);
+                if(code == NULL){
+                        return NULL;
+                }
+                /*Reallocate output to grow by the size of the char's code, plus space, plus endline*/
+                output = realloc(output, (strlen(output) + strlen(code) + 2) * sizeof(char));
+                /*Append char's code to output*/
+                strcat(output, code);
+                ++i;
+                c = *(input + i);
+                /*Append blankspace to output if more characters are coming*/
+                if(c != '\0'){
+                        strcat(output, blanksp);
+                }
+                code = NULL;
         }
-        else{
-                strcat(output, "\0");
+        /*Append \0 to output*/
+        strcat(output, endstr);
+        return output;
+}
+
+int encode_file(char *file_in, char *file_out)
+{
+        FILE *fptr_in, *fptr_out;
+        char *line, *aus;
+        int i = 0;
+        printf("Encoding file '%s'.\n", file_in);
+        append_newline(file_in);
+        fptr_in = fopen(file_in, "r");
+        if(fptr_in == NULL){
+                printf("Error opening file %s.\n", file_in);
+                return FILE_ERROR;
         }
+        fptr_out = fopen(file_out, "a");
+        if(fptr_out == NULL){
+                printf("Error opening file %s.\n", file_out);
+                return FILE_ERROR;
+        }
+        line = read_line(fptr_in);
+        while(line != NULL){
+                ++i;
+                aus = encode_string(line);
+                if(aus == NULL){
+                        printf("Issue on line %i of file %s .\n", i, file_in);
+                        printf("Please verify no unsupported characters are present in file to encode.\n");
+                        return UNSUPPORTED;
+                }
+                write_line(fptr_out, aus);
+                line = read_line(fptr_in);
+        }
+        printf("Encoding done. Output written to %s.\n", file_out);
+        fclose(fptr_in);
+        fclose(fptr_out);
         return 0;
 }
 
-int morse_decode(char * input, char * output)
+char *decode_char(char *input)
 {
-        char * curr_code;
-        char * curr_char;
-        /*take input, find index of first ' '*/
-        char * next_char_start = (strchr(input, ' '));
-        /*store first char in curr_code*/
-        size_t span = strspn(input, ".-/");
-        curr_code = malloc((span+1) * sizeof(char));
-        strncpy(curr_code, input, span);
-        curr_code[span] = '\0';
-        /*decode curr_code string*/
-        switch(span)
+        char *c;
+        size_t len = strlen(input);
+        /*decode input by comparing with codes of the appropriate length*/
+        switch(len)
         {
                 case 0:
-                        curr_char = "\0";
+                        c = "\0";
                         break;
                 case 1:
-                        if(strcmp(curr_code, CODE_E) == 0){
-                                curr_char = "E";
+                        if(strcmp(input, CODE_E) == 0){
+                                c = "E";
                         }
-                        else if(strcmp(curr_code, CODE_T) == 0){
-                                curr_char = "T";
+                        else if(strcmp(input, CODE_T) == 0){
+                                c = "T";
                         }
-                        else if(strcmp(curr_code, WORT_TREN) == 0){
-                                curr_char = " ";
+                        else if(strcmp(input, WORT_TREN) == 0){
+                                c = " ";
                         }
                         break;
                 case 2:
-                        if(strcmp(curr_code, CODE_M) == 0){
-                                curr_char = "M";
+                        if(strcmp(input, CODE_M) == 0){
+                                c = "M";
                         }
-                        else if(strcmp(curr_code, CODE_N) == 0){
-                                curr_char = "N";
+                        else if(strcmp(input, CODE_N) == 0){
+                                c = "N";
                         }
-                        else if(strcmp(curr_code, CODE_A) == 0){
-                                curr_char = "A";
+                        else if(strcmp(input, CODE_A) == 0){
+                                c = "A";
                         }
-                        else if(strcmp(curr_code, CODE_I) == 0){
-                                curr_char = "I";
+                        else if(strcmp(input, CODE_I) == 0){
+                                c = "I";
                         }
                         break;
                 case 3:
-                        if(strcmp(curr_code, CODE_O) == 0){
-                                curr_char = "O";
+                        if(strcmp(input, CODE_O) == 0){
+                                c = "O";
                         }
-                        else if(strcmp(curr_code, CODE_G) == 0){
-                                curr_char = "G";
+                        else if(strcmp(input, CODE_G) == 0){
+                                c = "G";
                         }
-                        else if(strcmp(curr_code, CODE_K) == 0){
-                                curr_char = "K";
+                        else if(strcmp(input, CODE_K) == 0){
+                                c = "K";
                         }
-                        else if(strcmp(curr_code, CODE_D) == 0){
-                                curr_char = "D";
+                        else if(strcmp(input, CODE_D) == 0){
+                                c = "D";
                         }
-                        else if(strcmp(curr_code, CODE_W) == 0){
-                                curr_char = "W";
+                        else if(strcmp(input, CODE_W) == 0){
+                                c = "W";
                         }
-                        else if(strcmp(curr_code, CODE_R) == 0){
-                                curr_char = "R";
+                        else if(strcmp(input, CODE_R) == 0){
+                                c = "R";
                         }
-                        else if(strcmp(curr_code, CODE_U) == 0){
-                                curr_char = "U";
+                        else if(strcmp(input, CODE_U) == 0){
+                                c = "U";
                         }
-                        else if(strcmp(curr_code, CODE_S) == 0){
-                                curr_char = "S";
+                        else if(strcmp(input, CODE_S) == 0){
+                                c = "S";
                         }
                         break;
                 case 4:
-                        if(strcmp(curr_code, CODE_Q) == 0){
-                                curr_char = "Q";
+                        if(strcmp(input, CODE_Q) == 0){
+                                c = "Q";
                         }
-                        else if(strcmp(curr_code, CODE_Z) == 0){
-                                curr_char = "Z";
+                        else if(strcmp(input, CODE_Z) == 0){
+                                c = "Z";
                         }
-                        else if(strcmp(curr_code, CODE_Y) == 0){
-                                curr_char = "Y";
+                        else if(strcmp(input, CODE_Y) == 0){
+                                c = "Y";
                         }
-                        else if(strcmp(curr_code, CODE_C) == 0){
-                                curr_char = "C";
+                        else if(strcmp(input, CODE_C) == 0){
+                                c = "C";
                         }
-                        else if(strcmp(curr_code, CODE_X) == 0){
-                                curr_char = "X";
+                        else if(strcmp(input, CODE_X) == 0){
+                                c = "X";
                         }
-                        else if(strcmp(curr_code, CODE_B) == 0){
-                                curr_char = "B";
+                        else if(strcmp(input, CODE_B) == 0){
+                                c = "B";
                         }
-                        else if(strcmp(curr_code, CODE_J) == 0){
-                                curr_char = "J";
+                        else if(strcmp(input, CODE_J) == 0){
+                                c = "J";
                         }
-                        else if(strcmp(curr_code, CODE_P) == 0){
-                                curr_char = "P";
+                        else if(strcmp(input, CODE_P) == 0){
+                                c = "P";
                         }
-                        else if(strcmp(curr_code, CODE_L) == 0){
-                                curr_char = "L";
+                        else if(strcmp(input, CODE_L) == 0){
+                                c = "L";
                         }
-                        else if(strcmp(curr_code, CODE_F) == 0){
-                                curr_char = "F";
+                        else if(strcmp(input, CODE_F) == 0){
+                                c = "F";
                         }
-                        else if(strcmp(curr_code, CODE_V) == 0){
-                                curr_char = "V";
+                        else if(strcmp(input, CODE_V) == 0){
+                                c = "V";
                         }
-                        else if(strcmp(curr_code, CODE_H) == 0){
-                                curr_char = "H";
+                        else if(strcmp(input, CODE_H) == 0){
+                                c = "H";
                         }
-/*                      else if(strcmp(curr_code, CODE_CH) == 0){
-                                curr_char = "CH";
+                        else if(strcmp(input, CODE_CH) == 0){
+                                c = "CH";
                         }
-                        else if(strcmp(curr_code, CODE_Ö) == 0){
-                                curr_char = "Ö";
+                        else if(strcmp(input, CODE_O_UMLT) == 0){
+                                c = "Ö";
                         }
-                        else if(strcmp(curr_code, CODE_Ä) == 0){
-                                curr_char = "Ä";
+                        else if(strcmp(input, CODE_A_UMLT) == 0){
+                                c = "Ä";
                         }
-                        else if(strcmp(curr_code, CODE_Ü) == 0){
-                                curr_char = "Ü"; 
+                        else if(strcmp(input, CODE_U_UMLT) == 0){
+                                c = "Ü"; 
                         }
-*/
                         break;
                 case 5:
-                        if(strcmp(curr_code, CODE_0) == 0){
-                                curr_char = "0";
+                        if(strcmp(input, CODE_0) == 0){
+                                c = "0";
                         }
-                        else if(strcmp(curr_code, CODE_9) == 0){
-                                curr_char = "9";
+                        else if(strcmp(input, CODE_9) == 0){
+                                c = "9";
                         }
-                        else if(strcmp(curr_code, CODE_8) == 0){
-                                curr_char = "8";
+                        else if(strcmp(input, CODE_8) == 0){
+                                c = "8";
                         }
-/*                         else if(strcmp(curr_code, CODE_Ñ) == 0){
-                                curr_char = "Ñ";
-                        } */
-                        else if(strcmp(curr_code, CODE_7) == 0){
-                                curr_char = "7";
+                        else if(strcmp(input, CODE_N_TILD) == 0){
+                                c = "Ñ";
                         }
-                        else if(strcmp(curr_code, CODE_PAROP) == 0){
-                                curr_char = "(";
+                        else if(strcmp(input, CODE_7) == 0){
+                                c = "7";
                         }
-                        else if(strcmp(curr_code, CODE_SLASH) == 0){
-                                curr_char = "/";
+                        else if(strcmp(input, CODE_PAROP) == 0){
+                                c = "(";
                         }
-                        else if(strcmp(curr_code, CODE_EQUAL) == 0){
-                                curr_char = "=";
+                        else if(strcmp(input, CODE_SLASH) == 0){
+                                c = "/";
                         }
-                        else if(strcmp(curr_code, CODE_6) == 0){
-                                curr_char = "6";
+                        else if(strcmp(input, CODE_EQUAL) == 0){
+                                c = "=";
                         }
-                        else if(strcmp(curr_code, CODE_1) == 0){
-                                curr_char = "1";
+                        else if(strcmp(input, CODE_6) == 0){
+                                c = "6";
                         }
-/*                         else if(strcmp(curr_code, CODE_À) == 0){
-                                curr_char = "À";
-                        } */
-                        else if(strcmp(curr_code, CODE_PLUSZ) == 0){
-                                curr_char = "+";
+                        else if(strcmp(input, CODE_1) == 0){
+                                c = "1";
                         }
-/*                         else if(strcmp(curr_code, CODE_È) == 0){
-                                curr_char = "È";
-                        } */
-                        else if(strcmp(curr_code, CODE_2) == 0){
-                                curr_char = "2";
+                        else if(strcmp(input, CODE_A_GRAV) == 0){
+                                c = "À";
                         }
-/*                         else if(strcmp(curr_code, CODE_É) == 0){
-                                curr_char = "É";
-                        } */
-                        else if(strcmp(curr_code, CODE_3) == 0){
-                                curr_char = "3";
+                        else if(strcmp(input, CODE_PLUSZ) == 0){
+                                c = "+";
                         }
-                        else if(strcmp(curr_code, CODE_4) == 0){
-                                curr_char = "4";
+                        else if(strcmp(input, CODE_E_GRAV) == 0){
+                                c = "È";
                         }
-                        else if(strcmp(curr_code, CODE_5) == 0){
-                                curr_char = "5";
+                        else if(strcmp(input, CODE_2) == 0){
+                                c = "2";
+                        }
+                        else if(strcmp(input, CODE_E_ACUT) == 0){
+                                c = "É";
+                        }
+                        else if(strcmp(input, CODE_3) == 0){
+                                c = "3";
+                        }
+                        else if(strcmp(input, CODE_4) == 0){
+                                c = "4";
+                        }
+                        else if(strcmp(input, CODE_5) == 0){
+                                c = "5";
                         }
                         break;
                 case 6:
-                        if(strcmp(curr_code, CODE_COLON) == 0){
-                                curr_char = ":";
+                        if(strcmp(input, CODE_COLON) == 0){
+                                c = ":";
                         }
-                        else if(strcmp(curr_code, CODE_KOMMA) == 0){
-                                curr_char = ",";
+                        else if(strcmp(input, CODE_KOMMA) == 0){
+                                c = ",";
                         }
-                        else if(strcmp(curr_code, CODE_PARCL) == 0){
-                                curr_char = ")";
+                        else if(strcmp(input, CODE_PARCL) == 0){
+                                c = ")";
                         }
-                        else if(strcmp(curr_code, CODE_EMARK) == 0){
-                                curr_char = "!";
+                        else if(strcmp(input, CODE_EMARK) == 0){
+                                c = "!";
                         }
-                        else if(strcmp(curr_code, CODE_SEMIC) == 0){
-                                curr_char = ";";
+                        else if(strcmp(input, CODE_SEMIC) == 0){
+                                c = ";";
                         }
-                        else if(strcmp(curr_code, CODE_MINUS) == 0){
-                                curr_char = "-";
+                        else if(strcmp(input, CODE_MINUS) == 0){
+                                c = "-";
                         }
-                        else if(strcmp(curr_code, CODE_SQUOT) == 0){
-                                curr_char = "'";
+                        else if(strcmp(input, CODE_SQUOT) == 0){
+                                c = "'";
                         }
-                        else if(strcmp(curr_code, CODE_ATSYM) == 0){
-                                curr_char = "@";
+                        else if(strcmp(input, CODE_ATSYM) == 0){
+                                c = "@";
                         }
-                        else if(strcmp(curr_code, CODE_PUNKT) == 0){
-                                curr_char = ".";
+                        else if(strcmp(input, CODE_PUNKT) == 0){
+                                c = ".";
                         }
-                        else if(strcmp(curr_code, CODE_DQUOT) == 0){
-                                curr_char = "\"";
+                        else if(strcmp(input, CODE_DQUOT) == 0){
+                                c = "\"";
                         }
-                        else if(strcmp(curr_code, CODE_UNDSC) == 0){
-                                curr_char = "_";
+                        else if(strcmp(input, CODE_UNDSC) == 0){
+                                c = "_";
                         }
-                        else if(strcmp(curr_code, CODE_QMARK) == 0){
-                                curr_char = "?";
+                        else if(strcmp(input, CODE_QMARK) == 0){
+                                c = "?";
                         }
-/*                         else if(strcmp(curr_code, CODE_ß) == 0){
-                                curr_char = "ß";
-                        } */
+                        else if(strcmp(input, CODE_S_ZED) == 0){
+                                c = "ß";
+                        }
                         break;
                 default:
-                        /*What to do in this situation?*/
-                        printf("Non-supported character.\n");
+                        printf("Code '%s' unknown.\n", input);
+                        c = NULL;
                         break;
         }              
-        /*append char to output*/
-        strcat(output, curr_char);
-        free(curr_code);
-        /*call again with (pointer to start of next char code, output)*/
-        if(next_char_start != NULL){
-                if(*(next_char_start + 1) != '\n'){
-                        morse_decode((next_char_start + 1), output);
-                }                
-        }
-        return 0;
+        return c;
 }
 
-int file_encode(char * file_in, char * file_out)
+char *decode_string(char *input)
 {
-        FILE *fptr_ein, *fptr_aus;
-        char *line, *aus;
-        printf("Encoding file '%s'.\n", file_in);
-        append_newline(file_in);
-        fptr_ein = fopen(file_in, "r");
-        if(fptr_ein == NULL){
-                printf("Error opening file %s.\n", file_in);
-                return INVALID_FILE;
+        /*Initially allocate size for a single char string*/
+        char *output = calloc( (1+1), sizeof(char));
+        /*Initially allocate size for the shortest code*/
+        char *code = calloc( (1+1), sizeof(char));
+        char *endstr = "\0";
+        size_t i = 0;
+        char c = *(input);
+        while (c != '\0' && c != 0){
+                while(c != ' ' && c != '\0'){
+                        *(code+i) = *(input+i);
+                        ++i;
+                        c = *(input + i);
+                        if(c != ' ' && c != '\0'){
+                                code = realloc(code, (strlen(code) + 1 + 1) * sizeof(char));
+                        }
+                        /*Reallocate code to grow by the size of the char's code, plus space, plus endline*/                        
+                }
+                *(code+i) = '\0';
+                if(decode_char(code) == NULL){
+                        return NULL;
+                }
+                /*Append decoded char to output*/
+                strcat(output, decode_char(code));
+                code = calloc( (1+1), sizeof(char));
+                if(strlen(input) > i+1){
+                        input = input + i + 1;
+                        output = realloc(output, (strlen(output) + 1 + 1) * sizeof(char));
+                        i = 0;
+                        c = *(input);
+                }
         }
-        fptr_aus = fopen(file_out, "a");
-        if(fptr_aus == NULL){
-                printf("Error opening file %s.\n", file_out);
-                return INVALID_FILE;
-        }
-        line = read_line(fptr_ein);
-        while(line != NULL){
-                aus = calloc((strlen(line) + 1) * 6 , sizeof(char));
-                morse_encode(line, aus);
-                write_line(fptr_aus, aus);
-                free(aus);
-                line = read_line(fptr_ein);
-        }
-        printf("Encoding done. Output written to %s.\n", file_out);
-        fclose(fptr_ein);
-        fclose(fptr_aus);
-        return 0;
+        /*Append endline to output*/
+        strcat(output, endstr);
+        free(code);
+        code = NULL;
+        return output;
 }
 
-int file_decode(char * file_in, char * file_out)
+int decode_file(char *file_in, char *file_out)
 {
-        FILE *fptr_ein, *fptr_aus;
+        FILE *fptr_in, *fptr_out;
         char *line, *aus;
+        int i = 0;
         printf("Decoding file '%s'.\n", file_in);
         append_newline(file_in);
-        fptr_ein = fopen(file_in, "r");
-        if(fptr_ein == NULL){
+        fptr_in = fopen(file_in, "r");
+        if(fptr_in == NULL){
                 printf("Error opening file %s.\n", file_in);
-                return INVALID_FILE;
+                return FILE_ERROR;
         }
-        fptr_aus = fopen(file_out, "a");
-        if(fptr_aus == NULL){
+        fptr_out = fopen(file_out, "a");
+        if(fptr_out == NULL){
                 printf("Error opening file %s.\n", file_out);
-                return INVALID_FILE;
+                return FILE_ERROR;
         }
-        line = read_line(fptr_ein);
+        line = read_line(fptr_in);
         while(line != NULL){
-                aus = calloc((strlen(line) + 1) , sizeof(char));
-                morse_decode(line, aus);
-                write_line(fptr_aus, aus);
-                free(aus);
-                line = read_line(fptr_ein);
+                ++i;
+                aus = decode_string(line);
+                if(aus == NULL){
+                        printf("Issue on line %i of file %s .\n", i, file_in);
+                        printf("Please verify no unsupported characters are present in the file to decode.\n");
+                        return UNSUPPORTED;
+                }
+                write_line(fptr_out, aus);
+                line = read_line(fptr_in);
         }
         printf("Decoding done. Output written to %s.\n", file_out);
-        fclose(fptr_ein);
-        fclose(fptr_aus);
+        fclose(fptr_in);
+        fclose(fptr_out);
         return 0;
 }
